@@ -19,13 +19,14 @@ class SliderGame extends Component {
 
 		let index = 0;
 		for(let i = 0; i < ROWS; i++) {
+			let row = [];
 			for (let j = 0; j < COLS; j++) {
-				boxes.push(
+				row.push(
 					<Box item={titles[index]} key={index} row={i} col={j} onClick={this.onTitleClick} />
 				);
 				index++;
 			}
-
+			boxes.push(row);
 		}
 
 		this.state = {
