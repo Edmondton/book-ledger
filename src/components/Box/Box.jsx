@@ -3,9 +3,9 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 import styles from './styles.css';
 
-function Box ({ item, position, onClick = Function.prototype }) {
+function Box ({ item, row, col, onClick = Function.prototype }) {
 	const click = () => {
-		onClick(item, position);
+		onClick(item, row, col);
 	};
 
 	return (

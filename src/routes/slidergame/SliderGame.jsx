@@ -14,28 +14,27 @@ class SliderGame extends Component {
 	constructor(props) {
 		super(props);
 		this.onTitleClick = this.onTitleClick.bind(this);
+		let titles = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 		let boxes = [];
 
 		let index = 0;
 		for(let i = 0; i < ROWS; i++) {
 			for (let j = 0; j < COLS; j++) {
 				boxes.push(
-					<Box item={index} key={index} row={i} col={j} onClick={this.onTitleClick} />
+					<Box item={titles[index]} key={index} row={i} col={j} onClick={this.onTitleClick} />
 				);
 				index++;
 			}
 
 		}
 
-		shuffle(boxes);
-
 		this.state = {
 			boxes: boxes
 		};
 	}
 
-	onTitleClick(item, position) {
-		console.log(`item: ${item},  position: ${position}`);
+	onTitleClick(item, row, col) {
+		console.log(`item: ${item},  row: ${row}, col: ${col}`);
 	}
 
 	render() {
@@ -50,7 +49,6 @@ class SliderGame extends Component {
 
 function mapStateToProps(state) {
 	return {
-		items: ITEMS
 	};
 }
 
