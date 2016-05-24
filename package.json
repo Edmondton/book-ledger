@@ -25,6 +25,7 @@
     "isomorphic-style-loader": "1.0.0",
     "jade": "1.11.0",
     "jsonwebtoken": "6.2.0",
+    "lodash": "^4.13.1",
     "markdown-it": "6.0.2",
     "node-fetch": "1.5.2",
     "normalize.css": "4.1.1",

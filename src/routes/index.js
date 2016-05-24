@@ -17,6 +17,7 @@ import login from './login';
 import register from './register';
 import content from './content';
 import error from './error';
+import slidergame from './slidergame';
 
 export default {
 
@@ -24,6 +25,7 @@ export default {
 
   children: [
     home,
+    slidergame,
     contact,
     login,
     register,

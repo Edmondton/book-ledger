@@ -1,0 +1,14 @@
+.box {
+    border: 1px solid grey;
+
+    height: 100px;
+    line-height: 100px;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    width: 100px;
+}
+
+[draggable=true] {
+    cursor: move;
+}
