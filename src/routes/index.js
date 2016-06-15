@@ -12,33 +12,22 @@ import App from '../components/App';
 
 // Child routes
 import home from './home';
-import contact from './contact';
-import login from './login';
-import register from './register';
-import content from './content';
 import error from './error';
-import slidergame from './slidergame';
 
 export default {
 
-  path: '/',
+	path: '/',
 
-  children: [
-    home,
-    slidergame,
-    contact,
-    login,
-    register,
-    content,
-    error,
-  ],
+	children: [
+		home,
+		error
+	],
 
-  async action({ next, render, context }) {
-    const component = await next();
-    if (component === undefined) return component;
-    return render(
-      <App context={context}>{component}</App>
-    );
-  },
-
+	async action({next, render, context}) {
+		const component = await next();
+		if (component === undefined) return component;
+		return render(
+			<App context={context}>{component}</App>
+		);
+	}
 };
