@@ -11,9 +11,9 @@ export default function ledgerReducer(state = Immutable.Map(), {type, payload}) 
 		default:
 			return state;
 		case SET_INITIAL_LEDGER_STATE:
-			const { initialBalanace } = payload;
+			const { initialBalance } = payload;
 			return state.withMutations(intermState => {
-				intermState.set('balance', initialBalanace);
+				intermState.set('balance', initialBalance);
 			});
 
 	}
