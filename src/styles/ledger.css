@@ -1,0 +1,53 @@
+@import './variables.css';
+
+.ledgerTable {
+	border-spacing: 0;
+	width: 100%;
+
+	& td {
+		padding: 5px 0;
+	}
+}
+
+.header {
+	color: var(--headerColor);
+	font-weight: bold;
+
+	& td {
+		border-top: 3px solid var(--headerColor);
+	}
+}
+
+.debitRow {
+	& td {
+		background-color: #EAEEE1;
+	}
+}
+
+.creditRow {
+	border-right: none;
+	& td {
+		border-bottom: 1px dashed var(--headerColor);
+	}
+}
+
+.centerCol {
+	text-align: center;
+}
+
+.debitHeader {
+	border-right: 2px solid var(--headerColor);
+	composes: centerCol;
+}
+
+.creditHeader {
+	composes: centerCol;
+}
+
+.debitAmount {
+	composes: debitHeader;
+}
+
+.creditAmount {
+	composes: creditHeader;
+}
