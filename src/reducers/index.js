@@ -1,6 +1,9 @@
-import { combineReducers } from 'redux';
-import runtime from './runtime';
+import Immutable from 'immutable';
 
-export default combineReducers({
-  runtime,
-});
+import ledger from './ledger';
+
+export default function reducers(state = Immutable.Map(), action) {
+	return state.merge({
+		ledger: ledger(state.get('ledger'), action)
+	});
+}

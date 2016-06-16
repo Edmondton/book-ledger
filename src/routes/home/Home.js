@@ -1,4 +1,6 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
 
 import Ledger from '../../components/Ledger/Ledger';
 import Balance from '../../components/Ledger/Balance';
@@ -8,12 +10,13 @@ import s from '../../styles/home.css';
 
 const title = 'Book Ledger';
 
-function Home({news}, context) {
+function Home({balance}, context) {
 	context.setTitle(title);
+
 	return (
 		<div className={s.root}>
 			<div className={s.container}>
-				<Balance amount={1002} />
+				<Balance amount={balance} />
 				<Ledger />
 			</div>
 		</div>
@@ -21,12 +24,19 @@ function Home({news}, context) {
 }
 
 Home.propTypes = {
-	news: PropTypes.arrayOf(PropTypes.shape({
-		title: PropTypes.string.isRequired,
-		link: PropTypes.string.isRequired,
-		contentSnippet: PropTypes.string,
-	})).isRequired
+	balance: PropTypes.number.isRequired
 };
+
 Home.contextTypes = {setTitle: PropTypes.func.isRequired};
 
-export default withStyles(s)(Home);
+function mapStateToProps(state) {
+	return {
+		balance: state.getIn(['ledger', 'balance']) || 0
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({}, dispatch);
+}
+
+export default withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(Home));
