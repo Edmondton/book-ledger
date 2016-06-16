@@ -8,10 +8,14 @@ export default {
 	path: '/',
 
 	async action({context: { store }}) {
-		const initialAmount = store.getState().getIn(['ledger', 'initialAmount'], null);
+		const initialAmount = store.getState().getIn(['ledger', 'balance'], null);
+
+		console.log('init amount', initialAmount);
+		console.log('state: ', store.getState().toJS());
 
 		if (!initialAmount) {
-			store.dispatch(setInitialState());
+			console.log('calling dispatch init state');
+			await store.dispatch(setInitialState());
 		}
 
 		return <Home />;
