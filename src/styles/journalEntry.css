@@ -1,0 +1,12 @@
+@import './variables.css';
+
+.container {
+	border: 1px dashed var(--headerColor);
+	border-radius: 3px;
+	margin: 20px 0;
+	width: 55%;
+}
+
+.fieldSet {
+	margin-bottom: 1rem;
+}

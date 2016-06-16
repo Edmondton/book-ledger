@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 
 import Ledger from '../../components/Ledger/Ledger';
 import Balance from '../../components/Ledger/Balance';
+import JournalEntry from '../../components/Ledger/JournalEntry';
 
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from '../../styles/home.css';
@@ -16,7 +17,10 @@ function Home({balance}, context) {
 	return (
 		<div className={s.root}>
 			<div className={s.container}>
-				<Balance amount={balance} />
+				<section className={s.ledgerHeader}>
+					<Balance amount={balance} />
+					<JournalEntry />
+				</section>
 				<Ledger />
 			</div>
 		</div>

@@ -10,7 +10,7 @@ function Balance({
 	let status = amount >= 0 ? 'Balanced' : 'Unbalanced';
 
 	return (
-		<section className={styles.container}>
+		<div className={styles.container}>
 			<table className={tableClass}>
 				<tbody>
 					<tr>
@@ -23,7 +23,7 @@ function Balance({
 					</tr>
 				</tbody>
 			</table>
-		</section>
+		</div>
 	);
 }
 

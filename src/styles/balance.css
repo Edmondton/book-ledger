@@ -1,10 +1,13 @@
 @import './variables.css';
 
 .container {
-    margin: 20px 20px 20px 0;
+    margin: 20px 0;
+    width: 40%;
 }
 
 .balanceTable {
+	width: 100%;
+
     & td {
         padding: 10px;
     }
@@ -13,6 +16,7 @@
 .positiveBalanceTable {
     composes: balanceTable;
     border: 1px dashed var(--positiveBalance);
+	border-radius: 6px;
     color: var(--positiveBalance);
 
     & tr {
