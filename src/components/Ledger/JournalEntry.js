@@ -58,6 +58,9 @@ class JournalEntry extends Component {
 					amount: this.refs.creditAmount.value
 				}
 			});
+			this.setState({
+				balance: null
+			});
 			this.clear();
 		}
 	}

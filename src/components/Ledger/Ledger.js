@@ -27,6 +27,7 @@ function getDebitRow(item, index) {
 }
 
 function getCreditRow(item, index) {
+	const balance = item.getIn(['balance']);
 	return (
 		<tr className={styles.creditRow} key={`credit-${index}`}>
 			<td></td>
@@ -41,9 +42,11 @@ function getCreditRow(item, index) {
 					format={'twoDecimal'} />
 			</td>
 			<td>
-				<FormattedNumber
-					value={item.getIn(['balance'])}
-					format={'twoDecimal'} />
+				<span className={balance >= 0 ? styles.positiveBalance : styles.negativeBalance}>
+					<FormattedNumber
+						value={item.getIn(['balance'])}
+						format={'twoDecimal'} />
+				</span>
 			</td>
 		</tr>
 	);

@@ -29,7 +29,7 @@ export default function ledgerReducer(state = Immutable.Map(), {type, payload}) 
 			}));
 
 			const initBalance = state.get('balance');
-			const balance = state.get('entries').reduce((item, init) => {
+			const balance = items.reduce((init, item) => {
 				return init + item.get('balance');
 			}, initBalance);
 
