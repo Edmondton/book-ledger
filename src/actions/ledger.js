@@ -7,15 +7,16 @@ export function setInitialState() {
 			initialBalance: 2020,
 			entries: [
 				{
+					id: 1,
 					date: '1/31/2016',
 					balance: 0.00,
 					debit: {
-						account: 'Payment from Fab',
-						amount: 5000.00
+						account: 'Payment from Fab mute',
+						amount: 5000.01
 					},
 					credit: {
-						account: 'Shipment from Fab',
-						amount: 5000.00
+						account: 'Shipment from Fab mute',
+						amount: 5000.01
 					}
 				}
 			]

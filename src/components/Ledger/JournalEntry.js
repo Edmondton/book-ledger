@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
+import Immutable from 'immutable';
 import moment from 'moment';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 import styles from '../../styles/journalEntry.css'
 
 function JournalEntry({
-
 }) {
 	return (
 		<div className={styles.container}>
@@ -28,6 +28,7 @@ function JournalEntry({
 		</div>
 	);
 }
+
 
 
 

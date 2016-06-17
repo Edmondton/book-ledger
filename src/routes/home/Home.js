@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import Immutable from 'immutable';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 
@@ -11,7 +12,7 @@ import s from '../../styles/home.css';
 
 const title = 'Book Ledger';
 
-function Home({balance}, context) {
+function Home({balance, entries}, context) {
 	context.setTitle(title);
 
 	return (
@@ -19,23 +20,25 @@ function Home({balance}, context) {
 			<div className={s.container}>
 				<section className={s.ledgerHeader}>
 					<Balance amount={balance} />
-					<JournalEntry />
+					<JournalEntry entries={entries} />
 				</section>
-				<Ledger />
+				<Ledger entries={entries} />
 			</div>
 		</div>
 	);
 }
 
 Home.propTypes = {
-	balance: PropTypes.number.isRequired
+	balance: PropTypes.number.isRequired,
+	entries: PropTypes.instanceOf(Immutable.List)
 };
 
 Home.contextTypes = {setTitle: PropTypes.func.isRequired};
 
 function mapStateToProps(state) {
 	return {
-		balance: state.getIn(['ledger', 'balance']) || 0
+		balance: state.getIn(['ledger', 'balance']) || 0,
+		entries: state.getIn(['ledger', 'entries']) || Immutable.List()
 	};
 }
 
