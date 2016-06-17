@@ -1,9 +1,16 @@
-import { SET_INITIAL_LEDGER_STATE, ADD_JOURNAL_ENTRY } from '../constants';
+import { SET_INITIAL_LEDGER_STATE, ADD_JOURNAL_ENTRY, DELETE_JOURNAL_ENTRY } from '../constants';
 
 export function addJournalEntry(data) {
 	return {
 		type: ADD_JOURNAL_ENTRY,
 		payload: data
+	}
+}
+
+export function deleteEntry(id) {
+	return {
+		type: DELETE_JOURNAL_ENTRY,
+		payload: id
 	}
 }
 

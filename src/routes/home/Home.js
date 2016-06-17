@@ -7,14 +7,14 @@ import Ledger from '../../components/Ledger/Ledger';
 import Balance from '../../components/Ledger/Balance';
 import JournalEntry from '../../components/Ledger/JournalEntry';
 
-import { addJournalEntry } from '../../actions/ledger';
+import { addJournalEntry, deleteEntry } from '../../actions/ledger';
 
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from '../../styles/home.css';
 
 const title = 'Book Ledger';
 
-function Home({balance, entries, addJournalEntry}, context) {
+function Home({balance, entries, addJournalEntry, deleteEntry}, context) {
 	context.setTitle(title);
 
 	return (
@@ -24,7 +24,7 @@ function Home({balance, entries, addJournalEntry}, context) {
 					<Balance amount={balance} />
 					<JournalEntry entries={entries} addJournalEntry={addJournalEntry} />
 				</section>
-				<Ledger entries={entries} />
+				<Ledger entries={entries} deleteEntry={deleteEntry} editEntry={deleteEntry} />
 			</div>
 		</div>
 	);
@@ -32,7 +32,9 @@ function Home({balance, entries, addJournalEntry}, context) {
 
 Home.propTypes = {
 	balance: PropTypes.number.isRequired,
-	entries: PropTypes.instanceOf(Immutable.List)
+	entries: PropTypes.instanceOf(Immutable.List),
+	addJournalEntry: PropTypes.func.isRequired,
+	deleteEntry: PropTypes.func.isRequired
 };
 
 Home.contextTypes = {setTitle: PropTypes.func.isRequired};
@@ -45,7 +47,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ addJournalEntry }, dispatch);
+	return bindActionCreators({ addJournalEntry, deleteEntry }, dispatch);
 }
 
 export default withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(Home));

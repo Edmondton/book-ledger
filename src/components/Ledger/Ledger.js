@@ -1,65 +1,26 @@
 import React, { PropTypes } from 'react';
-import { FormattedNumber } from 'react-intl';
 import Immutable from 'immutable';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
+import DebitEntry from './DebitEntry';
+import CreditEntry from './CreditEntry';
+
 import styles from '../../styles/ledger.css';
 
-function getDebitRow(item, index) {
-	return (
-		<tr className={styles.debitRow} key={`debit-${index}`}>
-			<td>{index + 1}</td>
-			<td>
-				{item.getIn(['date'])}
-			</td>
-			<td>
-				{item.getIn(['debit', 'account'])}
-			</td>
-			<td className={styles.debitAmount}>
-				<FormattedNumber
-					value={item.getIn(['debit', 'amount'])}
-					format={'twoDecimal'} />
-			</td>
-			<td className={styles.creditAmount}></td>
-			<td></td>
-		</tr>
-	);
-}
-
-function getCreditRow(item, index) {
-	const balance = item.getIn(['balance']);
-	return (
-		<tr className={styles.creditRow} key={`credit-${index}`}>
-			<td></td>
-			<td></td>
-			<td>
-				{item.getIn(['credit', 'account'])}
-			</td>
-			<td className={styles.debitAmount}></td>
-			<td className={styles.creditAmount}>
-				<FormattedNumber
-					value={item.getIn(['credit', 'amount'])}
-					format={'twoDecimal'} />
-			</td>
-			<td>
-				<span className={balance >= 0 ? styles.positiveBalance : styles.negativeBalance}>
-					<FormattedNumber
-						value={item.getIn(['balance'])}
-						format={'twoDecimal'} />
-				</span>
-			</td>
-		</tr>
-	);
-}
-
 function Ledger({
-	entries = Immutable.List()
+	entries = Immutable.List(),
+	deleteEntry = Function.prototype,
+	editEntry = Function.prototype
 }) {
 
 	const rows = entries.map((item, index) => {
 		return [
-			getDebitRow(item, index),
-			getCreditRow(item, index)
+			<DebitEntry item={item}
+			            index={index}
+			            deleteEntry={deleteEntry}
+			            editEntry={editEntry}
+			/>,
+			<CreditEntry item={item} index={index} />
 		];
 	});
 
@@ -85,7 +46,9 @@ function Ledger({
 }
 
 Ledger.propTypes = {
-	entries: PropTypes.instanceOf(Immutable.List)
+	entries: PropTypes.instanceOf(Immutable.List),
+	deleteEntry: PropTypes.func.isRequired,
+	editEntry: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Ledger);

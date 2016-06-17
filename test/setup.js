@@ -14,3 +14,6 @@ require.extensions['.svg'] = noop;
 require.extensions['.jpg'] = noop;
 require.extensions['.jpeg'] = noop;
 require.extensions['.gif'] = noop;
+
+var chai = require('chai');
+global.expect = global.expect || chai.expect;
