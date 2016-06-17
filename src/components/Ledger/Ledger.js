@@ -9,8 +9,7 @@ import styles from '../../styles/ledger.css';
 
 function Ledger({
 	entries = Immutable.List(),
-	deleteEntry = Function.prototype,
-	editEntry = Function.prototype
+	deleteEntry = Function.prototype
 }) {
 
 	const rows = entries.map((item, index) => {
@@ -18,7 +17,6 @@ function Ledger({
 			<DebitEntry item={item}
 			            index={index}
 			            deleteEntry={deleteEntry}
-			            editEntry={editEntry}
 			/>,
 			<CreditEntry item={item} index={index} />
 		];
@@ -47,8 +45,7 @@ function Ledger({
 
 Ledger.propTypes = {
 	entries: PropTypes.instanceOf(Immutable.List),
-	deleteEntry: PropTypes.func.isRequired,
-	editEntry: PropTypes.func.isRequired
+	deleteEntry: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Ledger);

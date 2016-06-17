@@ -36,7 +36,7 @@ function CreditEntry({
 
 CreditEntry.propTypes = {
 	item: PropTypes.instanceOf(Immutable.Map).isRequired,
-	index: PropTypes.number.isRequired,
+	index: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(CreditEntry);

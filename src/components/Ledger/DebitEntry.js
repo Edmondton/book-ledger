@@ -17,15 +17,9 @@ function DebitEntry({
 		</button>
 	);
 
-	const editButton = (
-		<button className={styles.btn}>
-			{he.decode('&#9998;')}
-		</button>
-	);
-
 	return (
 		<tr className={styles.debitRow} key={`debit-${index}`}>
-			<td>{index + 1} {deleteButton} {editButton}</td>
+			<td>{index + 1} {deleteButton}</td>
 			<td>
 				{item.getIn(['date'])}
 			</td>
