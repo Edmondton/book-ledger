@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { FormattedNumber } from 'react-intl';
 import Immutable from 'immutable';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
