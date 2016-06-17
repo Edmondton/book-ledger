@@ -8,10 +8,16 @@
  */
 
 import React, {Component, PropTypes} from 'react';
+import {Provider} from 'react-redux';
+import { IntlProvider } from 'react-intl';
+
+// Components
+import Header from '../Header';
+
+import formats from '../../configs/formats';
+
 import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from '../../styles/app.css';
-import Header from '../Header';
-import {Provider} from 'react-redux';
 
 class App extends Component {
 
@@ -57,12 +63,14 @@ class App extends Component {
 
 		const store = this.props.context.store;
 		return (
-			<Provider store={store}>
-				<div>
-					<Header />
-					{this.props.children}
-				</div>
-			</Provider>
+			<IntlProvider formats={formats} locale="en-US">
+				<Provider store={store}>
+					<div>
+						<Header />
+						{this.props.children}
+					</div>
+				</Provider>
+			</IntlProvider>
 		);
 	}
 

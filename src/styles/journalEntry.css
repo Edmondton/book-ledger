@@ -26,3 +26,17 @@
 		-moz-appearance: textfield;
 	}
 }
+
+.balance {
+	margin-left: 10px;
+}
+
+.positiveBalance {
+	composes: balance;
+	color: var(--positiveBalance);
+}
+
+.negativeBalance {
+	composes: balance;
+	color: var(--negativeBalance);
+}

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { FormattedNumber } from 'react-intl';
 import Immutable from 'immutable';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
@@ -15,7 +16,9 @@ function getDebitRow(item, index) {
 				{item.getIn(['debit', 'account'])}
 			</td>
 			<td className={styles.debitAmount}>
-				{item.getIn(['debit', 'amount'])}
+				<FormattedNumber
+					value={item.getIn(['debit', 'amount'])}
+					format={'twoDecimal'} />
 			</td>
 			<td className={styles.creditAmount}></td>
 			<td></td>
@@ -33,10 +36,14 @@ function getCreditRow(item, index) {
 			</td>
 			<td className={styles.debitAmount}></td>
 			<td className={styles.creditAmount}>
-				{item.getIn(['credit', 'amount'])}
+				<FormattedNumber
+					value={item.getIn(['credit', 'amount'])}
+					format={'twoDecimal'} />
 			</td>
 			<td>
-				{item.getIn(['balance'])}
+				<FormattedNumber
+					value={item.getIn(['balance'])}
+					format={'twoDecimal'} />
 			</td>
 		</tr>
 	);

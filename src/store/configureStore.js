@@ -19,8 +19,8 @@ export default function configureStore(initialState, helpersConfig) {
 		} else {
 			// Server side redux action logger
 			middleware.push(store => next => action => { // eslint-disable-line no-unused-vars
-				const payload = JSON.stringify(action.payload);
-				console.log(` * ${action.type}: ${payload}`); // eslint-disable-line no-console
+				//const payload = JSON.stringify(action.payload);
+				//console.log(` * ${action.type}: ${payload}`); // eslint-disable-line no-console
 				return next(action);
 			});
 		}

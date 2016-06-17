@@ -7,12 +7,14 @@ import Ledger from '../../components/Ledger/Ledger';
 import Balance from '../../components/Ledger/Balance';
 import JournalEntry from '../../components/Ledger/JournalEntry';
 
+import { addJournalEntry } from '../../actions/ledger';
+
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from '../../styles/home.css';
 
 const title = 'Book Ledger';
 
-function Home({balance, entries}, context) {
+function Home({balance, entries, addJournalEntry}, context) {
 	context.setTitle(title);
 
 	return (
@@ -20,7 +22,7 @@ function Home({balance, entries}, context) {
 			<div className={s.container}>
 				<section className={s.ledgerHeader}>
 					<Balance amount={balance} />
-					<JournalEntry entries={entries} />
+					<JournalEntry entries={entries} addJournalEntry={addJournalEntry} />
 				</section>
 				<Ledger entries={entries} />
 			</div>
@@ -43,7 +45,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({}, dispatch);
+	return bindActionCreators({ addJournalEntry }, dispatch);
 }
 
 export default withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(Home));
