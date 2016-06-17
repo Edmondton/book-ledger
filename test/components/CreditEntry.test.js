@@ -30,6 +30,6 @@ describe('CreditEntry Component', () => {
 
 		expect(creditEntry.length).to.equal(1);
 		expect(creditEntry.text()).to.contains(data.getIn(['credit', 'account']));
-		expect(creditEntry.text().contains('FormattedNumber')).to.equal(true);
+		expect(creditEntry.text()).to.contains('FormattedNumber');
 	});
 });
