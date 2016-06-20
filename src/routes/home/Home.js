@@ -22,7 +22,7 @@ function Home({balance, entries, addJournalEntry, deleteEntry}, context) {
 			<div className={s.container}>
 				<section className={s.ledgerHeader}>
 					<Balance amount={balance} />
-					<JournalEntry entries={entries} addJournalEntry={addJournalEntry} />
+					<JournalEntry addJournalEntry={addJournalEntry} />
 				</section>
 				<Ledger entries={entries} deleteEntry={deleteEntry} />
 			</div>

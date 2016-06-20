@@ -85,6 +85,7 @@
     "git-repository": "^0.1.4",
     "glob": "^7.0.3",
     "jade-loader": "^0.8.0",
+    "jsdom": "^9.2.1",
     "json-loader": "^0.5.4",
     "mkdirp": "^0.5.1",
     "mocha": "^2.4.5",
