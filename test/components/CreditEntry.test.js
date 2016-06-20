@@ -2,7 +2,6 @@ import React from 'react';
 import Immutable from 'immutable';
 import { shallow } from 'enzyme';
 import CreditEntry from '../../src/components/Ledger/CreditEntry';
-import { FormattedNumber } from 'react-intl';
 
 describe('CreditEntry Component', () => {
 	let wrapper = null;

@@ -24,7 +24,7 @@ function Home({balance, entries, addJournalEntry, deleteEntry}, context) {
 					<Balance amount={balance} />
 					<JournalEntry entries={entries} addJournalEntry={addJournalEntry} />
 				</section>
-				<Ledger entries={entries} deleteEntry={deleteEntry} editEntry={deleteEntry} />
+				<Ledger entries={entries} deleteEntry={deleteEntry} />
 			</div>
 		</div>
 	);
