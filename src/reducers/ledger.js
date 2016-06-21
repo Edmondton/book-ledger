@@ -30,8 +30,7 @@ export default function ledgerReducer(state = Immutable.Map(), {type, payload}) 
 		case ADD_JOURNAL_ENTRY:
 			return state.withMutations(intermState => {
 				const data = payload;
-
-				const items = state.get('entries').push(Immutable.fromJS({
+				let items = state.get('entries').push(Immutable.fromJS({
 					id: moment().unix(),
 					date: moment(data.date).format('MM/DD/YYYY'),
 					balance: data.balance,
@@ -51,7 +50,7 @@ export default function ledgerReducer(state = Immutable.Map(), {type, payload}) 
 				}, initBalance);
 
 				intermState.set('balance', balance);
-				intermState.set('entries', items);
+				intermState.set('entries', items.sortBy(item => moment(item.get('date'))));
 			});
 		case SET_INITIAL_LEDGER_STATE:
 			const { initialBalance, entries } = payload;
