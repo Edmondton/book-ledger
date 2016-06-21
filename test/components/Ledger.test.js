@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Ledger from '../../src/components/Ledger/Ledger';
 import DebitEntry from '../../src/components/Ledger/DebitEntry';
 
-describe('JournalEntry Component', () => {
+describe('Ledger Component', () => {
 	let wrapper = null;
 	let data = null;
 	

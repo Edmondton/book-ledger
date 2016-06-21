@@ -79,12 +79,12 @@ class JournalEntry extends Component {
 					<fieldset className={styles.fieldSet}>
 						<label htmlFor="debitAccount">Debit:</label>
 						<input ref="debitAccount" type="text" id="debitAccount" placeholder="Account Name" />
-						<input ref="debitAmount" type="number" placeholder="Amount" onBlur={this.calcBalance} />
+						<input ref="debitAmount" type="number" placeholder="Amount" id="debitAmount" onBlur={this.calcBalance} />
 					</fieldset>
 					<fieldset className={styles.fieldSet}>
 						<label htmlFor="creditAccount">Credit:</label>
 						<input ref="creditAccount" type="text" id="creditAccount" placeholder="Account Name" />
-						<input ref="creditAmount" type="number" placeholder="Amount" onBlur={this.calcBalance} />
+						<input ref="creditAmount" type="number" placeholder="Amount" id="creditAmount" onBlur={this.calcBalance} />
 					</fieldset>
 					<fieldset className={styles.fieldSet}>
 						<label>Balance:</label>

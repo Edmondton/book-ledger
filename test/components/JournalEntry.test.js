@@ -1,8 +1,11 @@
 import React from 'react';
-import Immutable from 'immutable';
-import { mount } from 'enzyme';
+import { findDOMNode } from 'react-dom';
+import { renderIntoDocument,
+	Simulate,
+	scryRenderedDOMComponentsWithTag,
+	findRenderedDOMComponentWithTag
+} from 'react-addons-test-utils';
 import JournalEntry from '../../src/components/Ledger/JournalEntry';
-import { IntlProvider } from 'react-intl';
 import App from '../../src/components/App/App';
 
 import jsdom from 'jsdom'
@@ -10,45 +13,42 @@ const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.document = doc;
 global.window = doc.defaultView;
 
+const SLICE = Array.prototype.slice;
+
 describe('JournalEntry', () => {
 	let wrapper = null;
-	
+	let dom = null;
+
 	beforeEach(() => {
-		wrapper = mount(
+		wrapper = renderIntoDocument(
 			<App context={{ insertCss: () => {} }}>
 				<JournalEntry addJournalEntry={Function.prototype} />
 			</App>
 		);
+
+		dom = () => findDOMNode(wrapper);
 	});
 
-	it('should render correctly', () => {
-		const journalEntry = wrapper.find('JournalEntry');
-		const inputs = wrapper.find('input');
+	it('should render correctly for adding a new entry', () => {
+		let inputs = scryRenderedDOMComponentsWithTag(wrapper, 'input');
 
-		expect(journalEntry.length).to.equal(1);
+		inputs[1].value = 'account';
+		inputs[2].value = 20;
+		inputs[3].value = 'credit';
+		inputs[4].value = 10;
+
+		Simulate.change(inputs[1]);
+		Simulate.change(inputs[2]);
+		Simulate.change(inputs[3]);
+		Simulate.change(inputs[4]);
+		Simulate.blur(inputs[4]);
+
+		let balance = scryRenderedDOMComponentsWithTag(wrapper, 'span');
+		let items = SLICE.call(balance).map(data => {
+			return data.textContent;
+		});
+
 		expect(inputs.length).to.equal(7);
+		expect(items).to.deep.equal(['Book Ledger', '10.00', '10.00']);
 	});
-
-	it('should behave correctly for submitting', () => {
-		const inputs = wrapper.find('input');
-		
-		console.log('inputs', inputs);
-		
-		/*
-		const debitAccount = 'debit account';
-		const debitAccountInput = wrapper.find('input')[1].simulate('change', {target: {value: debitAccount}});
-
-		const debitAmount = 10;
-		const debitAmountInput = wrapper.find('input')[2].simulate('change', {target: {value: debitAmount}});
-
-		const creditAccount = 'credit account';
-		const creditAccountInput = wrapper.find('input')[3].simulate('change', {target: {value: creditAccount}});
-
-		const creditAmount = 20;
-		const creditAmountInput = wrapper.find('input')[4].simulate('change', {target: {value: creditAmount}});
-
-		console.log('state', wrapper.state());
-		*/
-	});
-
 });
