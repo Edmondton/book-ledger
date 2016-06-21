@@ -9,7 +9,8 @@ class JournalEntry extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			balance: null
+			balance: null,
+			errors: []
 		};
 		this.calcBalance = this.calcBalance.bind(this);
 	}
@@ -27,6 +28,26 @@ class JournalEntry extends Component {
 		const debitAmount = this.refs.debitAmount.value;
 		const creditAccount = this.refs.creditAccount.value;
 		const creditAmount = this.refs.creditAmount.value;
+		let errors = [];
+
+		if (!entryDate) {
+			errors.push('Entry Date Required');
+		}
+		if (!debitAccount) {
+			errors.push('Debit Account Required');
+		}
+		if (!debitAmount) {
+			errors.push('Debit Amount Required');
+		}
+		if (!creditAccount) {
+			errors.push('Credit Account Required');
+		}
+		if (!creditAmount) {
+			errors.push('Credit Amount Required');
+		}
+		this.setState({
+			errors: errors
+		});
 
 		return entryDate && debitAccount && debitAmount && creditAccount && creditAmount;
 	}
@@ -59,9 +80,26 @@ class JournalEntry extends Component {
 				}
 			});
 			this.setState({
-				balance: null
+				balance: null,
+				errors: []
 			});
 			this.clear();
+		}
+	}
+
+	getErrors() {
+		if (this.state.errors && this.state.errors.length) {
+			const nodes = this.state.errors.map((item, index) => {
+				return (
+					<li key={index}>{item}</li>
+				)
+			})
+
+			return (
+				<ul className={styles.errors}>
+					{nodes}
+				</ul>
+			);
 		}
 	}
 
@@ -94,6 +132,7 @@ class JournalEntry extends Component {
 								format={'twoDecimal'} />
 						</span>
 					</fieldset>
+					{this.getErrors()}
 					<fieldset className={styles.fieldSet}>
 						<input type="button" value="Submit" onClick={this.onSubmitClick.bind(this)} />
 						<input type="reset" value="Reset" style={{marginLeft: 10}} onClick={this.clear.bind(this)} />

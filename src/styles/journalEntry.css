@@ -40,3 +40,7 @@
 	composes: balance;
 	color: var(--negativeBalance);
 }
+
+.errors {
+	color: var(--errorColor);
+}
